@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { singleFilm } from "../../services/api";
 import css from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [film, setFilm] = useState(null);
+  const location = useLocation();
+  console.log(location);
 
-  // console.log(121212, film);
   useEffect(() => {
     const fetching = async () => {
       try {
@@ -22,7 +23,10 @@ const MovieDetailsPage = () => {
     <section className={css.details}>
       {film && (
         <>
-          <Link className={css.link} to="/">
+          <Link
+            className={css.link}
+            to={location.state.pathname + location.state.search}
+          >
             Go back
           </Link>
           <div className={css.about}>

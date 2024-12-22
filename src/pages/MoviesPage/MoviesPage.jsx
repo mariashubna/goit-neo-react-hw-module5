@@ -3,22 +3,22 @@ import SearchForm from "../../components/SearchForm/SearchForm";
 import { searchFilm } from "../../services/api";
 import MovieList from "../../components/MovieList/MovieList";
 import css from "./MoviesPage.module.css";
+import { useSearchParams } from "react-router-dom";
 
 const MoviesPage = () => {
-  const [searchedQuery, setSearchedQuery] = useState("");
   const [searchedMovie, setSearchedMovie] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("query");
+
   useEffect(() => {
     const handleResult = async () => {
-      if (searchedQuery.length >= 2) {
+      if (query && query.length >= 2) {
         try {
           // setIsLoading(true);
           // setError(false);
-          const { results } = await searchFilm(searchedQuery);
+          const { results } = await searchFilm(query);
           if (results) {
-            setSearchedMovie((prevMovies) => [
-              ...prevMovies,
-              ...results.map((result) => result),
-            ]);
+            setSearchedMovie(results || []);
           }
 
           console.log(results);
@@ -30,24 +30,25 @@ const MoviesPage = () => {
         }
       }
     };
-    if (searchedQuery) handleResult();
-  }, [searchedQuery]);
+    handleResult();
+  }, [query]);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setSearchedMovie("");
+    setSearchedMovie([]);
     const form = e.target;
     let searchQuery = form.elements.search.value.trim().toLowerCase();
-    setSearchedQuery(searchQuery);
+    setSearchParams({ query: searchQuery });
     form.reset();
   };
+
   return (
     <section className={css.movie}>
       <SearchForm onSubmit={onSubmit} />
-      {searchedMovie.length > 0 ? (
-        <MovieList movies={searchedMovie} />
-      ) : (
+      {query && searchedMovie.length === 0 ? (
         <p>Sorry, but no movies were found for your query.</p>
+      ) : (
+        <MovieList movies={searchedMovie} />
       )}
     </section>
   );
