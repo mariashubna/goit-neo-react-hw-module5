@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import { searchFilm } from "../../services/api";
 import MovieList from "../../components/MovieList/MovieList";
+import css from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
   const [searchedQuery, setSearchedQuery] = useState("");
@@ -41,10 +42,10 @@ const MoviesPage = () => {
     form.reset();
   };
   return (
-    <>
+    <section className={css.movie}>
       <SearchForm onSubmit={onSubmit} />
       {searchedMovie.length > 0 && <MovieList movies={searchedMovie} />}
-    </>
+    </section>
   );
 };
 

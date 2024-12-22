@@ -1,0 +1,44 @@
+.details {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  border: 1px solid black;
+  padding: 8px;
+  color: black;
+  font-size: 18px;
+  transition: background-color ease-in-out 0.5s;
+}
+.link:hover {
+  background-color: rgb(218, 216, 214);
+}
+.about {
+  display: flex;
+  gap: 20px;
+}
+.img {
+  height: 500px;
+  width: 300px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+.info h2 {
+  font-size: 32px;
+}
+.info h3 {
+  font-size: 24px;
+}
+.info p {
+  font-size: 20px;
+  line-height: 1.5;
+}

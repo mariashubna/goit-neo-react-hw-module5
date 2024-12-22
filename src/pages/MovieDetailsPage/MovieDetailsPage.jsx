@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
 import { singleFilm } from "../../services/api";
+import css from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -18,12 +19,15 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   return (
-    <>
+    <section className={css.details}>
       {film && (
         <>
-          <Link to="/">Go back</Link>
-          <div>
+          <Link className={css.link} to="/">
+            Go back
+          </Link>
+          <div className={css.about}>
             <img
+              className={css.img}
               src={
                 film.poster_path
                   ? `https://image.tmdb.org/t/p/w500/${film.poster_path}`
@@ -31,7 +35,7 @@ const MovieDetailsPage = () => {
               }
               alt={film.title}
             />
-            <div>
+            <div className={css.info}>
               <h2>{film.title}</h2>
               <p>Vote average: {film.vote_average}</p>
               <h3>Overview</h3>
@@ -54,7 +58,7 @@ const MovieDetailsPage = () => {
         </>
       )}
       <Outlet />
-    </>
+    </section>
   );
 };
 
