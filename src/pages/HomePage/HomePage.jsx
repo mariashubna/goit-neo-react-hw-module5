@@ -12,17 +12,17 @@ const HomePage = () => {
         setMovies(trendList.results || []);
         return trendList;
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
     trendFilm();
   }, []);
 
-  console.log("ddd", movies);
+  // console.log("ddd", movies);
   return (
     <>
-      <MovieList movies={[...movies.map((movie) => movie.title)]} />
+      <MovieList movies={[...movies.map((movie) => movie)]} />
     </>
   );
 };

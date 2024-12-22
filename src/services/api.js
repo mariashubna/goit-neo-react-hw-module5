@@ -23,7 +23,17 @@ export const searchFilm = async (query) => {
 };
 
 export const singleFilm = async (movieId) => {
-  options.params.movie_id = movieId;
-  const { data } = await axios("search/movie", options);
+  const { data } = await axios(`movie/${movieId}`, options);
+  return data;
+};
+
+export const creditsFilm = async (movieId) => {
+  const { data } = await axios(`movie/${movieId}/credits`, options);
+  return data;
+};
+
+export const reviewsFilm = async (movieId) => {
+  const { data } = await axios(`movie/${movieId}/reviews`);
+  console.log(data);
   return data;
 };

@@ -3,7 +3,7 @@ import css from "./Navigation.module.css";
 
 const Navigation = () => {
   const getActiveClass = ({ isActive }) => {
-    console.log(isActive);
+    // console.log(isActive);
     return isActive ? css.active : "";
   };
   return (

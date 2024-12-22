@@ -16,7 +16,7 @@ const MoviesPage = () => {
           if (results) {
             setSearchedMovie((prevMovies) => [
               ...prevMovies,
-              ...results.map((result) => result.title),
+              ...results.map((result) => result),
             ]);
           }
 
@@ -42,7 +42,7 @@ const MoviesPage = () => {
   };
   return (
     <>
-      <SearchForm onSubmit={onSubmit} onChange={handleChange} />
+      <SearchForm onSubmit={onSubmit} />
       {searchedMovie.length > 0 && <MovieList movies={searchedMovie} />}
     </>
   );
