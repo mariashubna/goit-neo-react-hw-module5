@@ -2,19 +2,29 @@ import { useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { singleFilm } from "../../services/api";
 import css from "./MovieDetailsPage.module.css";
+import Loader from "../../components/Loader/Loader";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [film, setFilm] = useState(null);
   const location = useLocation();
   const backLink = useRef(location.state);
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetching = async () => {
       try {
+        setIsLoading(true);
+        setError(false);
         const res = await singleFilm(movieId);
         setFilm(res);
-      } catch {}
+      } catch {
+        setError(true);
+      } finally {
+        setIsLoading(false);
+      }
     };
     movieId && fetching();
   }, [movieId]);
@@ -26,6 +36,8 @@ const MovieDetailsPage = () => {
           <Link className={css.link} to={backLink.current ?? "/movies"}>
             Go back
           </Link>
+          {isLoading && <Loader />}
+          {error && <ErrorMessage />}
           <div className={css.about}>
             <img
               width={300}

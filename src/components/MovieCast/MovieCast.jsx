@@ -2,22 +2,38 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { creditsFilm } from "../../services/api";
 import css from "./MovieCast.module.css";
+import Loader from "../Loader/Loader";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 const MovieCast = () => {
   const [film, setFilm] = useState([]);
   const { movieId } = useParams();
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const searchCast = async () => {
       try {
+        setIsLoading(true);
+        setError(false);
         const res = await creditsFilm(movieId);
         setFilm(res.cast);
-      } catch {}
+      } catch {
+        setError(true);
+      } finally {
+        setIsLoading(false);
+      }
     };
     searchCast();
   }, []);
   return (
     <>
-      {film.length > 0 ? (
+      {error && <ErrorMessage />}
+      {isLoading ? (
+        <Loader />
+      ) : film.length === 0 ? (
+        <p>We have no information about the casts.</p>
+      ) : (
         <div className={css.wrap}>
           <ul className={css.list}>
             {film.map((cast, index) => {
@@ -39,8 +55,6 @@ const MovieCast = () => {
             })}
           </ul>
         </div>
-      ) : (
-        <p>We have no information about the actors.</p>
       )}
     </>
   );
