@@ -1,0 +1,22 @@
+.wrap {
+  padding: 20px;
+}
+.list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 20px;
+}
+.list li {
+  list-style: none;
+  width: 250px;
+  text-align: center;
+}
+.img {
+  display: block;
+  height: 350px;
+  width: 100%;
+  overflow: hidden;
+  object-fit: contain;
+  margin-bottom: 8px;
+}

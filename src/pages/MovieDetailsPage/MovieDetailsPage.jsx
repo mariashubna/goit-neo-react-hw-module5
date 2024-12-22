@@ -44,9 +44,9 @@ const MovieDetailsPage = () => {
               <p>{film.genres.map((genre) => genre.name).join(" ")}</p>
             </div>
           </div>
-          <div>
+          <div className={css.add_info}>
             <p>Additional information</p>
-            <ul>
+            <ul className={css.add_info_list}>
               <li>
                 <Link to="cast"> Cast </Link>
               </li>

@@ -42,3 +42,15 @@
   font-size: 20px;
   line-height: 1.5;
 }
+.add_info {
+  padding: 20px 0;
+  font-size: 20px;
+  border-top: 2px solid rgb(65, 64, 64);
+  border-bottom: 2px solid rgb(183, 181, 181);
+}
+.add_info p {
+  margin-bottom: 12px;
+}
+.add_info_list {
+  padding-left: 28px;
+}
