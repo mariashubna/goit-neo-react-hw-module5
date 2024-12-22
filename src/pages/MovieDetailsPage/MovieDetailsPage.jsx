@@ -7,7 +7,6 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [film, setFilm] = useState(null);
   const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
     const fetching = async () => {
@@ -23,10 +22,7 @@ const MovieDetailsPage = () => {
     <section className={css.details}>
       {film && (
         <>
-          <Link
-            className={css.link}
-            to={location.state.pathname + location.state.search}
-          >
+          <Link className={css.link} to={location.state ?? "/movies"}>
             Go back
           </Link>
           <div className={css.about}>
@@ -54,10 +50,14 @@ const MovieDetailsPage = () => {
             <p>Additional information</p>
             <ul className={css.add_info_list}>
               <li>
-                <Link to="cast"> Cast </Link>
+                <Link to="cast" state={location.state}>
+                  Cast
+                </Link>
               </li>
               <li>
-                <Link to="reviews"> Reviews </Link>
+                <Link to="reviews" state={location.state}>
+                  Reviews
+                </Link>
               </li>
             </ul>
           </div>

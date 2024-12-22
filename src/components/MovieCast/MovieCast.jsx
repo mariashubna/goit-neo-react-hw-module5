@@ -17,7 +17,7 @@ const MovieCast = () => {
   }, []);
   return (
     <>
-      {film ? (
+      {film.length > 0 ? (
         <div className={css.wrap}>
           <ul className={css.list}>
             {film.map((cast, index) => {

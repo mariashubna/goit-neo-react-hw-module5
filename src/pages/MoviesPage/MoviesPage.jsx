@@ -26,7 +26,6 @@ const MoviesPage = () => {
           // setError(true);
         } finally {
           // setIsLoading(false);
-          console.log("resres", searchedMovie);
         }
       }
     };
