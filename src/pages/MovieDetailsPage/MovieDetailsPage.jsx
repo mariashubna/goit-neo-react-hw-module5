@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { singleFilm } from "../../services/api";
 import css from "./MovieDetailsPage.module.css";
@@ -7,6 +7,7 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [film, setFilm] = useState(null);
   const location = useLocation();
+  const backLink = useRef(location.state);
 
   useEffect(() => {
     const fetching = async () => {
@@ -22,7 +23,7 @@ const MovieDetailsPage = () => {
     <section className={css.details}>
       {film && (
         <>
-          <Link className={css.link} to={location.state ?? "/movies"}>
+          <Link className={css.link} to={backLink.current ?? "/movies"}>
             Go back
           </Link>
           <div className={css.about}>
@@ -50,14 +51,10 @@ const MovieDetailsPage = () => {
             <p>Additional information</p>
             <ul className={css.add_info_list}>
               <li>
-                <Link to="cast" state={location.state}>
-                  Cast
-                </Link>
+                <Link to="cast">Cast</Link>
               </li>
               <li>
-                <Link to="reviews" state={location.state}>
-                  Reviews
-                </Link>
+                <Link to="reviews">Reviews</Link>
               </li>
             </ul>
           </div>

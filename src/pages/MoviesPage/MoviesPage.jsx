@@ -20,8 +20,6 @@ const MoviesPage = () => {
           if (results) {
             setSearchedMovie(results || []);
           }
-
-          console.log(results);
         } catch {
           // setError(true);
         } finally {
