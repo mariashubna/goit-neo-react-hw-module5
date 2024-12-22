@@ -9,20 +9,20 @@ const HomePage = () => {
     const trendFilm = async () => {
       try {
         const trendList = await searchTrend();
-        setMovies([...trendList.results]);
+        setMovies(trendList.results || []);
         return trendList;
       } catch (err) {
         console.log(err);
-      } finally {
-        console.log(movies);
       }
     };
 
     trendFilm();
   }, []);
+
+  console.log("ddd", movies);
   return (
     <>
-      <MovieList movies={movies} />
+      <MovieList movies={[...movies.map((movie) => movie.title)]} />
     </>
   );
 };
