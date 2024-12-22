@@ -44,7 +44,11 @@ const MoviesPage = () => {
   return (
     <section className={css.movie}>
       <SearchForm onSubmit={onSubmit} />
-      {searchedMovie.length > 0 && <MovieList movies={searchedMovie} />}
+      {searchedMovie.length > 0 ? (
+        <MovieList movies={searchedMovie} />
+      ) : (
+        <p>Sorry, but no movies were found for your query.</p>
+      )}
     </section>
   );
 };

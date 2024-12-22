@@ -27,6 +27,8 @@ const MovieDetailsPage = () => {
           </Link>
           <div className={css.about}>
             <img
+              width={300}
+              height={500}
               className={css.img}
               src={
                 film.poster_path

@@ -17,7 +17,7 @@ const MovieCast = () => {
   }, []);
   return (
     <>
-      {film && (
+      {film ? (
         <div className={css.wrap}>
           <ul className={css.list}>
             {film.map((cast, index) => {
@@ -39,6 +39,8 @@ const MovieCast = () => {
             })}
           </ul>
         </div>
+      ) : (
+        <p>We have no information about the actors.</p>
       )}
     </>
   );

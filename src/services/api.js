@@ -34,6 +34,5 @@ export const creditsFilm = async (movieId) => {
 
 export const reviewsFilm = async (movieId) => {
   const { data } = await axios(`movie/${movieId}/reviews`);
-  console.log(data);
   return data;
 };

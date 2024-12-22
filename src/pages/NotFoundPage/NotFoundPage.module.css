@@ -1,0 +1,16 @@
+.not_found {
+  padding: 200px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.not_found h2 {
+  font-size: 40px;
+}
+.not_found p {
+  font-size: 20px;
+}
+.not_found a {
+  font-size: 30px;
+}

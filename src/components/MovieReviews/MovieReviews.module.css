@@ -1,0 +1,11 @@
+.review {
+  padding: 20px;
+}
+.review ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.author {
+  margin-bottom: 10px;
+}
