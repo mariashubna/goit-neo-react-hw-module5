@@ -25,7 +25,7 @@ const MovieCast = () => {
       }
     };
     searchCast();
-  }, []);
+  }, [movieId]);
   return (
     <>
       {error && <ErrorMessage />}

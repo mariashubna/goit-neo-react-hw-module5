@@ -25,7 +25,7 @@ const MovieReviews = () => {
       }
     };
     searchReviews();
-  }, []);
+  }, [movieId]);
   return (
     <>
       {error && <ErrorMessage />}
